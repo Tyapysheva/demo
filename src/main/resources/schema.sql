@@ -1,13 +1,3 @@
-организация, офис, юзер
-страны и документы
-
-БД
-1. Названия разделять нижним подчёркиванием (full_name, is_active и т.п.)
-2. В названии таблиц не использовать множественное число
-3. Явно задавать ограничение количества символов для varchar
-4. На все внешние ключи и поля, по которым производится поиск, должны быть индексы
-5. Название индекса IX_<название таблицы>_<название поля>, уникальный индекс - UX_<название таблицы>_<название поля>
-
 create table organization(
     id          bigint primary key,
     name        varchar(50),
@@ -33,7 +23,7 @@ create table citizenship(
 );
 create table document(
   code tinyint primary key,
-  name varchar (50)
+  name varchar (150)
 );
 
 create table person(
