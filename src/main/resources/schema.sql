@@ -1,5 +1,5 @@
 create table organization(
-    id          bigint primary key,
+    id          integer AUTO_INCREMENT PRIMARY KEY,
     name        varchar(50),
     fullname    varchar(255),
     inn         varchar(12),
@@ -9,7 +9,7 @@ create table organization(
     active      boolean
 );
 create table office(
-  id integer primary key,
+  id integer AUTO_INCREMENT PRIMARY KEY,
   name varchar (50),
   address varchar (255),
   phone varchar (15),
@@ -27,7 +27,7 @@ create table document(
 );
 
 create table person(
-  id integer primary key,
+  id integer AUTO_INCREMENT PRIMARY KEY,
   firstname varchar (25),
   middlename varchar (25),
   secondname varchar (25),
