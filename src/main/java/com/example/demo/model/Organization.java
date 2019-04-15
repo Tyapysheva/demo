@@ -26,6 +26,6 @@ public class Organization {
     @Column(name = "phone", length = 15)
     private String phone;
     @Column(name = "active")
-    private boolean active;
+    private boolean isActive;
     private Set<Office> officeSet;
 }
