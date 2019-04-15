@@ -24,8 +24,8 @@ public class Person {
     @Column(name="identified")
     private boolean identified;
     private Office office;
-    private Set<Document> documentSet;
-    private Set<Citizenship> citizenshipSet;
+    private Document document;
+    private Citizenship citizenship;
    // office_id integer,
    // foreign key(office_id)references office(id)
 

@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "office")
@@ -21,5 +22,6 @@ public class Office {
     private boolean active;
 
     private Organization organization;
+    private Set<Person> personSet;
 
 }

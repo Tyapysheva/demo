@@ -9,7 +9,11 @@ create table if not exists organization(
     phone       varchar(15) COMMENT 'Телефон организации',
     active boolean  COMMENT 'Действующая организации'
 );
+CREATE INDEX IX_organization_inn_kpp ON organization (inn,kpp);
+CREATE INDEX IX_organization_full_name ON organization (full_name);
+
 COMMENT ON TABLE organization IS 'Организация'
+
 ----------------------------------------
 create table if not exists office(
   id integer AUTO_INCREMENT COMMENT 'Уникальный идентификатор' PRIMARY KEY,
@@ -26,16 +30,16 @@ COMMENT ON TABLE office IS 'Офис'
 create table if not exists citizenship(
   id integer AUTO_INCREMENT  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
   version  integer not null COMMENT 'Служебное поле hibernate',
-  code varchar(4) COMMENT 'Код страны',
-  name varchar (50) COMMENT 'Название страны'
+  code varchar(4)  not null COMMENT 'Код страны' unique,
+  name varchar (50) COMMENT 'Название страны',
 );
 COMMENT ON TABLE citizenship IS 'Гражданство'
 ----------------------------------------------
 create table if not exists document_type(
   id integer AUTO_INCREMENT COMMENT 'Уникальный идентификатор' PRIMARY KEY,
   version  integer not null COMMENT 'Служебное поле hibernate',
-  code varchar(4) COMMENT 'Код типа документа',
-  name varchar (150) COMMENT 'Название типа документа'
+  code varchar(4) not null COMMENT 'Код типа документа'unique,
+  name varchar (150) COMMENT 'Название типа документа',
 );
 COMMENT ON TABLE document_type IS 'Тип документа'
 --------------------------------------------------
@@ -47,6 +51,7 @@ doc_date date COMMENT 'Дата получения документа',
 id_doctype integer COMMENT 'Уникальный идентификатор типа документа',
 foreign key(id_doctype)references document_type(id),
 );
+
 COMMENT ON TABLE document IS 'Документ';
 -------------------------------------------------
 create table if not exists person(

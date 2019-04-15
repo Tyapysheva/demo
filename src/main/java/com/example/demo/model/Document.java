@@ -1,34 +1,22 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Date;
 
-//Документ
 @Entity
-@Table(name = "document")
+@Table(name="document")
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Version
-    private int version;          //служебное поле hibernate
-    @Column(name = "code")
-    private byte codeDoc;
-    @Column(name = "name",length = 150)
-    private String nameDoc;
-    private Set<Person> personSet;
+    private int version;
+    @Column(name = "doc_number",length = 50)
+    private String docNumber;
+    @Column(name = "date")
+    private Date date;
 
-    public Document(byte codeDoc, String nameDoc) {
-        this.codeDoc = codeDoc;
-        this.nameDoc = nameDoc;
-    }
+    private DocumentType docType;
 
-    public int codeDoc() {
-        return codeDoc;
-    }
-
-    public String nameDoc() {
-        return nameDoc;
-    }
 }

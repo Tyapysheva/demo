@@ -15,18 +15,19 @@ public class Citizenship {
 
     @Version
     private int version;               //служебное поле hibernate
-    @Column(name = "code")
-    private short codeCitizenship;
+    @Column(name = "code",length = 4)
+    private String codeCitizenship;
     @Column(name = "name",length = 50)
     private String nameCitizenship;
+
     private Set<Person> personSet;
 
-    public Citizenship(short codeCitizenship, String nameCitizenship) {
+    public Citizenship(String codeCitizenship, String nameCitizenship) {
         this.codeCitizenship = codeCitizenship;
         this.nameCitizenship = nameCitizenship;
     }
 
-    public int codeCitizenship() {
+    public String codeCitizenship() {
         return codeCitizenship;
     }
 

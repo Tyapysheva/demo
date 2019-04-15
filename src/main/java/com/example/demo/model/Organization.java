@@ -28,4 +28,5 @@ public class Organization {
     @Column(name = "active")
     private boolean isActive;
     private Set<Office> officeSet;
+
 }
