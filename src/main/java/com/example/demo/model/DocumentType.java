@@ -18,7 +18,7 @@ public class DocumentType {
     private String codeDoc;
     @Column(name = "name", length = 150)
     private String nameDoc;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "document_type")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document_type")
     private Set<Document> documentSet;
 
     public DocumentType(String codeDoc, String nameDoc) {

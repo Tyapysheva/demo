@@ -16,7 +16,7 @@ public class Document {
     private String docNumber;
     @Column(name = "date")
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_doctype", nullable = false)
     private DocumentType docType;

@@ -28,7 +28,7 @@ public class Organization {
     private String phone;
     @Column(name = "active")
     private boolean isActive;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
     private Set<Office> officeSet;
 
     public Organization(String fullName, String inn, String kpp) {

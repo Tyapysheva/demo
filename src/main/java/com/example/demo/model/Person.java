@@ -23,14 +23,14 @@ public class Person {
     private String position;
     @Column(name = "identified")
     private boolean identified;
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_office", nullable = false)
     private Office office;
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private Document document;
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_citizenship", nullable = false)
     private Citizenship citizenship;

@@ -19,7 +19,7 @@ public class Citizenship {
     @Column(name = "name", length = 50)
     private String nameCitizenship;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "citizenship")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "citizenship")
     private Set<Person> personSet;
 
     public Citizenship(String codeCitizenship, String nameCitizenship) {

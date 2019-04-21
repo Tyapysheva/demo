@@ -21,11 +21,11 @@ public class Office {
     private String phone;
     @Column(name = "active")
     private boolean active;
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_org", nullable = false)
     private Organization organization;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "office")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "office")
     private Set<Person> personSet;
 
     public Office(String name, String phone) {
