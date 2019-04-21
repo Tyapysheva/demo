@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 //Документ
@@ -13,11 +14,11 @@ public class DocumentType {
     private int id;
     @Version
     private int version;          //служебное поле hibernate
-    @Column(name = "code",length = 4)
+    @Column(name = "code", length = 4)
     private String codeDoc;
-    @Column(name = "name",length = 150)
+    @Column(name = "name", length = 150)
     private String nameDoc;
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "document_type")
     private Set<Document> documentSet;
 
     public DocumentType(String codeDoc, String nameDoc) {
@@ -25,11 +26,34 @@ public class DocumentType {
         this.nameDoc = nameDoc;
     }
 
-    public String codeDoc() {
+    public String setCodeDoc() {
         return codeDoc;
     }
 
-    public String nameDoc() {
+    public String setNameDoc() {
         return nameDoc;
+    }
+
+    public String getCodeDoc() {
+        return codeDoc;
+    }
+
+    public String getNameDoc() {
+        return nameDoc;
+    }
+
+    public Set<Document> getDocumentSet() {
+        if (documentSet == null) {
+            documentSet = new HashSet<>();
+        }
+        return documentSet;
+    }
+
+    public void addDocument(Document document) {
+        getDocumentSet().add(document);
+    }
+
+    public void removeDocument(Document document) {
+        getDocumentSet().remove(document);
     }
 }

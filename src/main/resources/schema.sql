@@ -22,8 +22,8 @@ create table if not exists office(
   address varchar (200) COMMENT 'Адрес офиса',
   phone varchar (15)COMMENT 'Телефон офиса',
   active boolean COMMENT 'Действующий офис',
-  org_id integer COMMENT 'Уникальный идентификатор организации',
-  foreign key(org_id) references organization(id)
+  id_org integer COMMENT 'Уникальный идентификатор организации',
+  foreign key(id_org) references organization(id)
 );
 COMMENT ON TABLE office IS 'Офис'
 ----------------------------------------------
@@ -65,7 +65,7 @@ create table if not exists person(
   identified boolean COMMENT 'Потвержденный документ',
   id_office integer COMMENT 'Уникальный идентификатор офиса',
   id_citizenship integer COMMENT 'Уникальный идентификатор гражданства',
-  id_doc integer COMMENT 'Уникальный идентификатор документа',
+  id_doc integer COMMENT 'Уникальный идентификатор документа' unique ,
   foreign key(id_office)references office(id),
   foreign key(id_doc)references document(id),
   foreign key(id_citizenship)references citizenship(id)

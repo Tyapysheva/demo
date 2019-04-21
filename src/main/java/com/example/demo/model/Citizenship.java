@@ -12,14 +12,14 @@ public class Citizenship {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Version
     private int version;               //служебное поле hibernate
-    @Column(name = "code",length = 4)
+    @Column(name = "code", length = 4)
     private String codeCitizenship;
-    @Column(name = "name",length = 50)
+    @Column(name = "name", length = 50)
     private String nameCitizenship;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "citizenship")
     private Set<Person> personSet;
 
     public Citizenship(String codeCitizenship, String nameCitizenship) {
@@ -27,11 +27,34 @@ public class Citizenship {
         this.nameCitizenship = nameCitizenship;
     }
 
-    public String codeCitizenship() {
+    public void setCodeCitizenship(String codeCitizenship) {
+        this.codeCitizenship = codeCitizenship;
+    }
+
+    public void setNameCitizenship(String nameCitizenship) {
+        this.nameCitizenship = nameCitizenship;
+    }
+
+    public Set<Person> getPersonSet() {
+        if (personSet == null) {
+            personSet = new HashSet<>();
+        }
+        return personSet;
+    }
+
+    public void addDocument(Person person) {
+        getPersonSet().add(person);
+    }
+
+    public void removeDocument(Person person) {
+        getPersonSet().remove(person);
+    }
+
+    public String getCodeCitizenship() {
         return codeCitizenship;
     }
 
-    public String nameCitizenship() {
+    public String getNameCitizenship() {
         return nameCitizenship;
     }
 }
