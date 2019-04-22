@@ -20,11 +20,8 @@ public class DocumentType {
     @Column(name = "name", length = 150)
     private String nameDoc;
 
-//        @OneToMany(
-//        mappedBy = "document_type",
-//        orphanRemoval = true
-//    )
-//    private Set<Document> documentSet;
+    @OneToMany(mappedBy = "doctype")
+    private Set<Document> documentSet;
 
     public DocumentType(String codeDoc, String nameDoc) {
         this.codeDoc = codeDoc;

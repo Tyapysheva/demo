@@ -21,7 +21,7 @@ public class Document {
     private Person person;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_document_type")
-    private DocumentType docType;
+    private DocumentType doctype;
 
     public Document(String docNumber, Date date) {
         this.docNumber = docNumber;
@@ -29,11 +29,11 @@ public class Document {
     }
 
     public void setDocumentType(DocumentType documentType) {
-        this.docType = documentType;
+        this.doctype = documentType;
     }
 
     public DocumentType getDocumentType() {
-        return docType;
+        return doctype;
     }
 
     public void setDocNumber(String docNumber) {
