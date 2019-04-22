@@ -27,8 +27,8 @@ public class Person {
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_office", nullable = false)
     private Office office;
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_doc")
     private Document document;
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})

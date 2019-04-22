@@ -9,10 +9,10 @@ create table if not exists organization(
     phone       varchar(15) COMMENT 'Телефон организации',
     active boolean  COMMENT 'Действующая организации'
 );
-CREATE INDEX IX_organization_inn_kpp ON organization (inn,kpp);
-CREATE INDEX IX_organization_full_name ON organization (full_name);
+create INDEX IX_organization_inn_kpp ON organization (inn,kpp);
+create INDEX IX_organization_full_name ON organization (full_name);
 
-COMMENT ON TABLE organization IS 'Организация'
+COMMENT ON TABLE organization IS 'Организация';
 
 ----------------------------------------
 create table if not exists office(
@@ -25,7 +25,7 @@ create table if not exists office(
   id_org integer COMMENT 'Уникальный идентификатор организации',
   foreign key(id_org) references organization(id)
 );
-COMMENT ON TABLE office IS 'Офис'
+COMMENT ON TABLE office IS 'Офис';
 ----------------------------------------------
 create table if not exists citizenship(
   id integer AUTO_INCREMENT  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
@@ -33,7 +33,7 @@ create table if not exists citizenship(
   code varchar(4)  not null COMMENT 'Код страны' unique,
   name varchar (50) COMMENT 'Название страны',
 );
-COMMENT ON TABLE citizenship IS 'Гражданство'
+COMMENT ON TABLE citizenship IS 'Гражданство';
 ----------------------------------------------
 create table if not exists document_type(
   id integer AUTO_INCREMENT COMMENT 'Уникальный идентификатор' PRIMARY KEY,
@@ -41,15 +41,15 @@ create table if not exists document_type(
   code varchar(4) not null COMMENT 'Код типа документа'unique,
   name varchar (150) COMMENT 'Название типа документа',
 );
-COMMENT ON TABLE document_type IS 'Тип документа'
+COMMENT ON TABLE document_type IS 'Тип документа';
 --------------------------------------------------
 create table if not exists document(
 id integer AUTO_INCREMENT COMMENT 'Уникальный идентификатор' PRIMARY KEY,
 version integer not null COMMENT 'Служебное поле hibernate',
 doc_number varchar(50)COMMENT 'Номер документа',
 doc_date date COMMENT 'Дата получения документа',
-id_doctype integer COMMENT 'Уникальный идентификатор типа документа',
-foreign key(id_doctype)references document_type(id),
+id_document_type integer COMMENT 'Уникальный идентификатор типа документа',
+foreign key(id_document_type)references document_type(id),
 );
 
 COMMENT ON TABLE document IS 'Документ';
@@ -70,7 +70,6 @@ create table if not exists person(
   foreign key(id_doc)references document(id),
   foreign key(id_citizenship)references citizenship(id)
 );
-COMMENT ON TABLE person IS 'Человек'
-
+COMMENT ON TABLE person IS 'Человек';
 
 

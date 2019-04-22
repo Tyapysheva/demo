@@ -42,11 +42,11 @@ public class Citizenship {
         return personSet;
     }
 
-    public void addDocument(Person person) {
+    public void addPerson(Person person) {
         getPersonSet().add(person);
     }
 
-    public void removeDocument(Person person) {
+    public void removePerson(Person person) {
         getPersonSet().remove(person);
     }
 

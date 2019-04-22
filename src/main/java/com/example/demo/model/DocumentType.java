@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,20 +19,24 @@ public class DocumentType {
     private String codeDoc;
     @Column(name = "name", length = 150)
     private String nameDoc;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document_type")
-    private Set<Document> documentSet;
+
+//        @OneToMany(
+//        mappedBy = "document_type",
+//        orphanRemoval = true
+//    )
+//    private Set<Document> documentSet;
 
     public DocumentType(String codeDoc, String nameDoc) {
         this.codeDoc = codeDoc;
         this.nameDoc = nameDoc;
     }
 
-    public String setCodeDoc() {
-        return codeDoc;
+    public void setCodeDoc(String codeDoc) {
+        this.codeDoc = codeDoc;
     }
 
-    public String setNameDoc() {
-        return nameDoc;
+    public void setNameDoc(String nameDoc) {
+        this.nameDoc = nameDoc;
     }
 
     public String getCodeDoc() {
@@ -41,19 +46,18 @@ public class DocumentType {
     public String getNameDoc() {
         return nameDoc;
     }
-
-    public Set<Document> getDocumentSet() {
-        if (documentSet == null) {
-            documentSet = new HashSet<>();
-        }
-        return documentSet;
-    }
-
-    public void addDocument(Document document) {
-        getDocumentSet().add(document);
-    }
-
-    public void removeDocument(Document document) {
-        getDocumentSet().remove(document);
-    }
+//    public Set<Document> getDocumentSet() {
+//        if (documentSet == null) {
+//            documentSet = new HashSet<>();
+//        }
+//        return documentSet;
+//    }
+//
+//    public void addDocument(Document document) {
+//        getDocumentSet().add(document);
+//    }
+//
+//    public void removeDocument(Document document) {
+//        getDocumentSet().remove(document);
+//    }
 }

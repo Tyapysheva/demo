@@ -14,20 +14,26 @@ public class Document {
     private int version;
     @Column(name = "doc_number", length = 50)
     private String docNumber;
-    @Column(name = "date")
+    @Column(name = "doc_date")
     private Date date;
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_doctype", nullable = false)
-    private DocumentType docType;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_person")
+    @OneToOne(mappedBy = "document", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
     private Person person;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_document_type")
+    private DocumentType docType;
 
     public Document(String docNumber, Date date) {
         this.docNumber = docNumber;
         this.date = date;
+    }
+
+    public void setDocumentType(DocumentType documentType) {
+        this.docType = documentType;
+    }
+
+    public DocumentType getDocumentType() {
+        return docType;
     }
 
     public void setDocNumber(String docNumber) {
@@ -38,20 +44,20 @@ public class Document {
         this.date = date;
     }
 
-    public void setDocType(DocumentType docType) {
-        this.docType = docType;
-    }
-
-
     public String getDocNumber() {
         return docNumber;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public DocumentType getDocType() {
-        return docType;
-    }
 }
